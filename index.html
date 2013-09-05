@@ -21,12 +21,22 @@
         form{
             position: absolute;
             top:510px;
-
+        }
+        #results{
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            top: 0;
+            bottom: 0;
+            left: 600px;
+            right: 0;
+            font-family: monospace;
         }
     </style>
+    <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
 </head>
 <body>
-<form action="shell.php" method="post">
+<form action="shell.php" method="post" id="form">
 <textarea name="code">
 PROGRAM GOKE
 IMPLICIT NONE
@@ -35,10 +45,13 @@ STOP
 END PROGRAM GOKE
 </textarea>
     <br/>
-<input type="submit">
+<input type="button" id="submit" value="Compile & Run">
 </form>
 <div id="code">
 
+</div>
+<div id="results">
+    Hello World
 </div>
 <script src="./js/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
@@ -52,7 +65,18 @@ END PROGRAM GOKE
        textarea.innerHTML = editor.getSession().getValue();
     });
     editor.renderer.onResize(true);
+    $(document).ready(function(){
+       $("#submit").unbind("click").on("click",function(){
+           var url = "./shell.php";
+           var contents = $("#form").serialize();
+           $.post(url,contents,function(data){
+               $("#results").html(data);
+           });
+           return false;
+       });
+    });
 </script>
+
 
 </body>
 </html>
