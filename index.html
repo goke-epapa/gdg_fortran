@@ -1,21 +1,58 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>
-Fortran Ise
-</title>
-<?head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Editor</title>
+    <style type="text/css" media="screen">
+        body {
+            overflow: hidden;
+        }
 
+        #code {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        form{
+            position: absolute;
+            top:510px;
 
+        }
+    </style>
+</head>
 <body>
-
-
 <form action="shell.php" method="post">
 <textarea name="code">
-
+PROGRAM GOKE
+IMPLICIT NONE
+WRITE(*,*)"HELLO wORLD"
+STOP
+END PROGRAM GOKE
 </textarea>
-<input type="submit"/>
+    <br/>
+<input type="submit">
 </form>
+<div id="code">
+
+</div>
+<script src="./js/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("code");
+    editor.setTheme("ace/theme/twilight");
+    editor.getSession().setMode("ace/mode/sql");
+    var textarea = document.getElementsByTagName("textarea")[0];
+    textarea.style.display = "none";
+    editor.getSession().setValue(textarea.innerHTML);
+    editor.getSession().on("change",function(){
+       textarea.innerHTML = editor.getSession().getValue();
+    });
+    editor.renderer.onResize(true);
+</script>
+
 </body>
-
-
 </html>
