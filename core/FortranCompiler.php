@@ -20,6 +20,7 @@ class FortranCompiler{
     }
 
     public function createFortranFile($string){
+        $string = Utils::replaceReadStatements($string);
         file_put_contents($this->filename,$string);
     }
 
@@ -42,7 +43,7 @@ class FortranCompiler{
     }
 
     public function executeProgram(){
-        return shell_exec("./".$this->programName);
+        return shell_exec("./".$this->programName ." 2 3");
     }
 
 }

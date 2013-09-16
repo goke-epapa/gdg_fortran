@@ -3,7 +3,9 @@ require_once("FileLoader.php");
 
 $temp = "PROGRAM GOKE". "\n".
     "IMPLICIT NONE". "\n".
-    "WRITE(*,*)'NO CODE PROVIDED'". "\n".
+    "CHARACTER(len=32)::A". "\n".
+    "READ(*,*)A". "\n".
+    "WRITE(*,*)'NO CODE PROVIDED', A". "\n".
     "STOP". "\n".
     "END PROGRAM GOKE";
 

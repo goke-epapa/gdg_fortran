@@ -66,7 +66,6 @@
         </div>
       </div>
     </div>
-
     <div class="container">
         <div style="width: 900px;">
             <div id="code">
@@ -74,18 +73,21 @@
             <div id="results">
             </div>
         </div>
-        <form action="shell_old.php" method="post" id="form">
-            <textarea name="code">
-                PROGRAM GOKE
-                IMPLICIT NONE
-                WRITE(*,*)"HELLO wORLD"
-                STOP
-                END PROGRAM GOKE
-            </textarea>
-            <br/>
-            <input class="btn btn-success" type="button" id="submit" value="Compile & Run">
-            <input class="btn btn-danger" type="button" value="Clear" id="clear_btn">
-        </form>
+        <div style="width: 900px;">
+            <form action="shell_old.php" method="post" id="form">
+                <textarea name="code">
+                    PROGRAM GOKE
+                    IMPLICIT NONE
+                    WRITE(*,*)"HELLO wORLD"
+                    STOP
+                    END PROGRAM GOKE
+                </textarea>
+                <input name="stdin" type="text" />
+                <br/>
+                <button class="btn btn-success" type="button" id="submit"><i class="icon-wrench"></i> Compile & Run</button>
+                <button class="btn btn-danger" type="button" id="clear_btn">Clear</button>
+            </form>
+        </div>
 
         <div class="footer">
             <hr>
@@ -105,13 +107,24 @@
     <script src="./js/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
         var editor = ace.edit("code");
-//        editor.setTheme("ace/theme/twilight");
-        editor.getSession().setMode("ace/mode/sql");
+        editor.setTheme("ace/theme/chrome");
+        editor.getSession().setMode("ace/mode/java");
         var textarea = document.getElementsByTagName("textarea")[1];
         textarea.style.display = "none";
         editor.getSession().setValue(textarea.innerHTML);
         editor.getSession().on("change",function(){
             textarea.innerHTML = editor.getSession().getValue();
+        });
+        editor.setFontSize(13);
+        editor.getSession().on("changeAnnotation", function(){
+
+            var annot = editor.getSession().getAnnotations();
+
+            for (var key in annot){
+                if (annot.hasOwnProperty(key))
+                    console.log("[" + annot[key][0].row + " , " + annot[key][0].column + "] - \t" + annot[key][0].text);
+            }
+
         });
         editor.renderer.onResize(true);
         $(document).ready(function(){
