@@ -42,8 +42,8 @@ class FortranCompiler{
         shell_exec($command);
     }
 
-    public function executeProgram(){
-        return shell_exec("./".$this->programName ." 2 3");
+    public function executeProgram($cli_args){
+        return shell_exec("./".$this->programName ." ".$cli_args);
     }
 
 }

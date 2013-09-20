@@ -205,3 +205,36 @@ footer div p {
     font-size: 0.9em;
     color: #888;
 }
+
+/**
+*Obasa Adegoke
+**/
+#code {
+    width: 400px;
+    height: 450px;
+    margin-top: 10px;
+}
+
+#results {
+    width: 400px;
+    height: 450px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #000000;
+    font-family: monospace;
+}
+#error{
+    font-size: 1.2em;
+    color: red;
+    display: none;
+}
+#success{
+    font-size: 1.2em;
+    color: #ffffff;
+    display: none;
+}
+.output_header{
+    float: left;
+    color: #ffffff;
+}

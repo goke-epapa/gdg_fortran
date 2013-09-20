@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"/>
-
 <head>
     <title>FORTRAN COMPILER</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <!-- Favicon -->
     <link href="images/favicon/favicon%20(2).ico" rel="icon" type="image/x-icon"/>
-
     <!-- CSS Files -->
     <link href="assets/css/fortran_style.css" rel="stylesheet" type="text/css" media="screen">
     <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
@@ -16,41 +13,6 @@
     <link href="assets/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" type="text/css" media="screen">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" media="screen">
-    <style>
-            /*body {*/
-            /*padding-top: 60px; *//* 60px to make the container go all the way to the bottom of the topbar */
-            /*min-height: 600px;*/
-            /*}*/
-        #code {
-            width: 400px;
-            height: 450px;
-            margin-top: 10px;
-        }
-
-        #results {
-            width: 400px;
-            height: 450px;
-            margin-top: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            background-color: #000000;
-            font-family: monospace;
-        }
-        #error{
-            font-size: 1.2em;
-            color: red;
-            display: none;
-        }
-        #success{
-            font-size: 1.2em;
-            color: #ffffff;
-            display: none;
-        }
-        .output_header{
-            float: left;
-            color: #ffffff;
-        }
-    </style>
 </head>
 <body>
 <header class="page-header">
@@ -98,12 +60,11 @@ WRITE(*,*)"HELLO WORLD"
 STOP
 END PROGRAM GOKE
                     </textarea>
-                    Enter the input to the program seperated with commas e.g 1,2,3,4
+                    Enter the input to the program separated with commas e.g 1,2,3,4
                     <br/>
-                    <input name="stdin" type="text" placeholder="enter the input seperated with commas" />
-                    <br/>
+                    <input name="stdin" id="stdin" type="text" />
                     <button  id="submit" class="btn btn-primary btn-success" type="button"><i class="icon-ok-circle"></i>Compile
-                        and Run
+                        & Run
                     </button>
                     <button id="clear_btn" class="btn btn-primary btn-danger" type="button"><i class="icon-remove"></i>Clear</button>
                 </form>
@@ -255,52 +216,5 @@ END PROGRAM GOKE
 <script type="text/javascript" src="js/dashboard.js"></script>
 <script type="text/javascript" src="js/fortran_init.js"></script>
 <script src="./js/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    var editor = ace.edit("code");
-    editor.setTheme("ace/theme/twilight");
-    editor.getSession().setMode("ace/mode/java");
-    var textarea = document.getElementsByTagName("textarea")[1];
-    textarea.style.display = "none";
-    editor.getSession().setValue(textarea.innerHTML);
-    editor.getSession().on("change", function () {
-        textarea.innerHTML = editor.getSession().getValue();
-    });
-    editor.setFontSize(16);
-    editor.getSession().on("changeAnnotation", function () {
-
-        var annot = editor.getSession().getAnnotations();
-
-        for (var key in annot) {
-            if (annot.hasOwnProperty(key))
-                console.log("[" + annot[key][0].row + " , " + annot[key][0].column + "] - \t" + annot[key][0].text);
-        }
-
-    });
-    editor.renderer.onResize(true);
-    $(document).ready(function () {
-        $("#submit").unbind("click").on("click", function () {
-            var url = "./shell.php";
-            var contents = $("#form").serialize();
-            $("#success").hide();
-            $("#source_link").hide();
-            $("#error").hide();
-            $.post(url, contents, function (data) {
-                if(data.status){
-                    console.log(data.result);
-                    $("#success").html(">> " + data.result).fadeIn();
-                    $("#source_link").attr("href",data.link).fadeIn();
-                }else{
-                    $("#error").html("Error>>\n" + data.error_message).fadeIn();
-                }
-            },"json");
-            return false;
-        });
-    });
-    $("#clear_btn").unbind("clear").on("click", function () {
-        editor.getSession().setValue("");
-        $("#success").hide();
-        $("#source_link").hide();
-        $("#error").hide();
-    });
-</script>
+<script src="./js/core.js"></script>
 </html>
