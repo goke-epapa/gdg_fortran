@@ -3,6 +3,22 @@
 
 class Utils{
 
+    public static function createDownloadableSourceFile($source)
+    {
+//        session_start();
+        $_SESSION["source"] = $source;
+    }
+
+    public static function pushSource($filename, $extension, $source)
+    {
+        header("Cache-Control: public");
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: filename=$filename.$extension");
+        header("Content-Type: application/octet-stream;");
+        header("Content-Transfer-Encoding: binary");
+        echo($source);
+    }
+
     public static function random_string($length) {
         $key = '';
         $keys = array_merge(range(0, 9), range('a', 'z'));

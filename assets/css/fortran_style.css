@@ -1,0 +1,207 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+}
+
+.header-container-homepage {
+    min-width: 928px;
+    max-width: 928px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+i{
+    margin: 10px 3px 0 0;
+}
+
+.header-left {
+    color: #000;
+    font-family: HelveticaNeue, sans-serif, SERIF;
+    font-weight: bold;
+    font-size: 2em;
+    width: 390px;
+    margin: 10px 0 0 30px;
+}
+
+.logo-div-text {
+    margin-top: 25px;
+}
+
+.header-right {
+    margin: 30px -40px 0 0;
+}
+
+header div a {
+    text-decoration: none;
+    color: #0044cc;
+    margin-right: 10px;
+}
+
+.container {
+    min-width: 900px;
+    max-width: 900px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left-bar {
+    margin-left: 15px;
+    position: absolute;
+    z-index: 4;
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    margin-top: -15px;
+    border-radius: 7px;
+    border: 1px solid black;
+}
+
+.right-bar{
+    margin-left: 550px;
+    position: absolute;
+    z-index: 4;
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    margin-top: -15px;
+    border-radius: 7px;
+    border: 1px solid black;
+}
+
+.button {
+    clear: both;
+    margin: 390px 0 0 15px;
+}
+
+.contact-us {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 4;
+    width: 500px;
+    height: 500px;
+    background-color: #fff;
+    margin-top: 5px;
+    border-radius: 7px;
+    border: 1px solid black;
+}
+
+.contact-us  h1 {
+    color: #888888;
+    margin: 30px 0 30px 30px;
+}
+
+.contact-us label {
+    margin: 10px 0 0 30px;
+    font-size: small;
+}
+
+.contact-textfield{
+    margin-left: 30px;
+}
+
+.contact-button {
+    margin: 10px 0 0 30px;
+}
+
+.about-us {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 4;
+    width: 1000px;
+    height: 450px;
+    background-color: #fff;
+    margin-top: 5px;
+    border-radius: 7px;
+}
+
+.about-us  h1 {
+    color: #888888;
+    margin: 20px 0 30px 20px;
+}
+
+.about-us p {
+    color: #000;
+    margin: 0px 20px 0px 20px;
+}
+
+.about-us > h1 >img {
+    margin: 8px 0 0 20px;
+}
+
+.about-div {
+    width: 290px;
+    height: 15px;
+    margin-top: 15px;
+    font-size: medium;
+}
+
+hr{
+    margin: 0;
+}
+
+.history {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 4;
+    width: 1000px;
+    height: 700px;
+    background-color: #fff;
+    margin-top: 5px;
+    border-radius: 7px;
+}
+
+.history  h1 {
+    color: #888888;
+    margin: 30px 0 30px 20px;
+}
+
+.history p {
+    color: #000;
+    margin: 0px 20px 0px 20px;
+}
+
+footer {
+    min-height: 30px;
+    min-width: 960px;
+    clear: both;
+    margin-top: 15px;
+}
+
+.footer-container-homepage {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer div p {
+    text-align: center;
+    font-family: verdana;
+    font-size: 0.9em;
+    color: #888;
+}

@@ -1,147 +1,306 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Fortran Compiler</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <!-- Le styles -->
-    <link href="./assets/css/bootstrap.css" rel="stylesheet">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"/>
+
+<head>
+    <title>FORTRAN COMPILER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <!-- Favicon -->
+    <link href="images/favicon/favicon%20(2).ico" rel="icon" type="image/x-icon"/>
+
+    <!-- CSS Files -->
+    <link href="assets/css/fortran_style.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="assets/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" media="screen">
     <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-        min-height: 600px;
-      }
-      #code {
-          position: relative;
-          float: left;
-          border: 1px solid black;
-          width: 400px;
-          height: 500px;
-      }
-      #results{
-          position: relative;
-          float: right;
-          border: 1px solid black;
-          width: 400px;
-          height: 500px;
-          font-family: monospace;
-      }
+            /*body {*/
+            /*padding-top: 60px; *//* 60px to make the container go all the way to the bottom of the topbar */
+            /*min-height: 600px;*/
+            /*}*/
+        #code {
+            width: 400px;
+            height: 450px;
+            margin-top: 10px;
+        }
+
+        #results {
+            width: 400px;
+            height: 450px;
+            margin-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-color: #000000;
+            font-family: monospace;
+        }
+        #error{
+            font-size: 1.2em;
+            color: red;
+            display: none;
+        }
+        #success{
+            font-size: 1.2em;
+            color: #ffffff;
+            display: none;
+        }
+        .output_header{
+            float: left;
+            color: #ffffff;
+        }
     </style>
-    <!--<link href="./assets/css/bootstrap-responsive.css" rel="stylesheet">-->
+</head>
+<body>
+<header class="page-header">
+    <div class="header-container-homepage">
+        <div class="header-left left">
+            <div class="left">
+                <img src="images/Fortran.png"/>
+            </div>
+            <div class="right logo-div-text">
+                <p>FORTRAN COMPILER</p>
+            </div>
+        </div>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="./assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="./assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="./assets/ico/favicon.png">
-      <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
-  </head>
-
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">Fortran Compiler</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs header-right right" id="links">
+                <li class="active"><a href="#home" data-toggle="tab"><i class="icon-home"></i>Home</a></li>
+                <li><a href="#contact_us" data-toggle="tab"><i class="icon-envelope"></i>Contact Us</a></li>
+                <li><a href="#about_us" data-toggle="tab"><i class="icon-info-sign"></i>About Us</a></li>
+                <li><a href="#history" data-toggle="tab"><i class="icon-globe"></i>History of FORTRAN</a></li>
             </ul>
-          </div><!--/.nav-collapse -->
         </div>
-      </div>
     </div>
-    <div class="container">
-        <div style="width: 900px;">
-            <div id="code">
+</header>
+
+<div class="container">
+
+    <div class="tab-content" id="home">
+        <div class="left left-bar" id="code">
+
+        </div>
+        <div class="right right-bar" id="results">
+            <span class="output_header">Output</span>
+            <hr class="line"/>
+            <p id="error"></p>
+            <p id="success"></p>
+            <a id="source_link" target="_blank" style="display: none;" href=""><i class="icon-download"></i> Download Source</a>
+        </div>
+        <div class="button">
+            <div>
+                <form action="shell_old.php" method="post" id="form">
+                    <textarea name="code">
+PROGRAM GOKE
+IMPLICIT NONE
+WRITE(*,*)"HELLO WORLD"
+STOP
+END PROGRAM GOKE
+                    </textarea>
+                    Enter the input to the program seperated with commas e.g 1,2,3,4
+                    <br/>
+                    <input name="stdin" type="text" placeholder="enter the input seperated with commas" />
+                    <br/>
+                    <button  id="submit" class="btn btn-primary btn-success" type="button"><i class="icon-ok-circle"></i>Compile
+                        and Run
+                    </button>
+                    <button id="clear_btn" class="btn btn-primary btn-danger" type="button"><i class="icon-remove"></i>Clear</button>
+                </form>
             </div>
-            <div id="results">
+            </div>
+    </div>
+
+    <div class="tab-content contact-us" id="contact_us">
+        <h1>Keep in touch with us.</h1>
+        <label for="first_name">First name</label>
+        <input type="text" class="contact-textfield" placeholder="First Name" id="first_name" size="50"
+               required="required"/>
+        <label for="first_name">Last name</label>
+        <input type="text" class="contact-textfield" placeholder="Last Name" id="last_name" size="50"
+               required="required"/>
+        <label for="first_name">Email Address</label>
+        <input type="email" class="contact-textfield" placeholder="Email Address" id="email" size="50"
+               required="required"/>
+        <label for="first_name">Your Message</label>
+        <textarea class="contact-textfield" placeholder="Your Message" id="message" size="50"
+                  required="required"></textarea>
+
+        <div>
+            <button class="btn btn-primary btn-success contact-button" type="button"><i class="icon-envelope"></i>Send
+            </button>
+        </div>
+    </div>
+
+    <div class="tab-content about-us" id="about_us">
+        <h1>About Us <img src="images/GDG_OAU.png"/></h1>
+
+        <p>Google Developer Groups (GDGs) are for developers who are interested in Google's developer technology;
+            everything from the Android, App Engine, and Google Chrome platforms, to product APIs like the Maps API,
+            YouTube API and Google Calendar API and other cutting-edge technology too.
+            </br></br>
+            <b>FORTRAN COMPILER</b> is a community project developed by some members of the GDG OAU. This web-app allows
+            for compilation and running of FORTRAN on the web. It puts a compiler right in your browsers.
+            </br></br>
+        </p>
+
+        <p><b>Team Members</b></p>
+        <hr>
+        </br>
+        <div class="about-div">
+            <div class="left">
+                <p>Adegoke Obasa</p>
+            </div>
+            <div class="right">
+                <a href="https://www.facebook.com/goke.epapa"><img src="images/Facebook-logo-ICON-02.png"
+                                                                   title="Facebook Profile"/></a>
+                <a href="https://plus.google.com/115368439744486671677"><img src="images/google-Plus-icon.png"
+                                                                             title="Google+ Profile"/></a>
+                <a href="http://ng.linkedin.com/in/adegokeobasa"><img src="images/LinkedIn-Logo-02.png"
+                                                                      title="Linkedin Profile"/></a>
             </div>
         </div>
-        <div style="width: 900px;">
-            <form action="shell_old.php" method="post" id="form">
-                <textarea name="code">
-                    PROGRAM GOKE
-                    IMPLICIT NONE
-                    WRITE(*,*)"HELLO wORLD"
-                    STOP
-                    END PROGRAM GOKE
-                </textarea>
-                <input name="stdin" type="text" />
-                <br/>
-                <button class="btn btn-success" type="button" id="submit"><i class="icon-wrench"></i> Compile & Run</button>
-                <button class="btn btn-danger" type="button" id="clear_btn">Clear</button>
-            </form>
+
+        <div class="about-div">
+            <div class="left">
+                <p>Adeyemi Olaoye</p>
+            </div>
+            <div class="right">
+                <a href="https://www.facebook.com/yemexx1"><img src="images/Facebook-logo-ICON-02.png"
+                                                                title="Facebook Profile"/></a>
+                <a href="https://plus.google.com/112436644181152524782/"><img src="images/google-Plus-icon.png"
+                                                                              title="Google+ Profile"/></a>
+                <a href="https://ng.linkedin.com/pub/olaoye-adeyemi/49/267/367"><img src="images/LinkedIn-Logo-02.png"
+                                                                                     title="Linkedin Profile"/></a>
+            </div>
         </div>
 
-        <div class="footer">
-            <hr>
-            <p>&copy; GDG OAU 2013</p>
+        <div class="about-div">
+            <div class="left">
+                <p>Moyinoluwa Adeyemi</p>
+            </div>
+            <div class="right">
+                <a href="https://www.facebook.com/moyheen"><img src="images/Facebook-logo-ICON-02.png"
+                                                                title="Facebook profile"/></a>
+                <a href="https://plus.google.com/116010703929816839550"><img src="images/google-Plus-icon.png"
+                                                                             title="Google+ Profile"/></a>
+                <a href="http://ng.linkedin.com/in/moyheen"><img src="images/LinkedIn-Logo-02.png"
+                                                                 title="Linkedin Profile"/></a>
+            </div>
+            `
         </div>
-    </div> <!-- /container -->
+    </div>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./assets/js/jquery.js"></script>
-    <script src="./assets/js/bootstrap-alert.js"></script>
-    <script src="./assets/js/bootstrap-modal.js"></script>
-    <script src="./assets/js/bootstrap-tooltip.js"></script>
-    <script src="./assets/js/bootstrap-popover.js"></script>
-    <script src="./assets/js/bootstrap-button.js"></script>
-    <script src="./js/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-        var editor = ace.edit("code");
-        editor.setTheme("ace/theme/chrome");
-        editor.getSession().setMode("ace/mode/java");
-        var textarea = document.getElementsByTagName("textarea")[1];
-        textarea.style.display = "none";
-        editor.getSession().setValue(textarea.innerHTML);
-        editor.getSession().on("change",function(){
-            textarea.innerHTML = editor.getSession().getValue();
+    <div class="tab-content history" id="history">
+        <h1>History of FORTRAN</h1>
+
+        <p>
+            One of the oldest programming languages, the FORTRAN was developed by a team of programmers at IBM led by
+            John Backus, and was first published in 1957. The name FORTRAN is an acronym for FORmula TRANslation,
+            because it was designed to allow easy translation of math formulas into code.
+            </br></br>
+
+            Often referred to as a scientific language, FORTRAN was the first high-level language, using the first
+            compiler ever developed. Prior to the development of FORTRAN computer programmers were required to program
+            in machine/assembly code, which was an extremely difficult and time consuming task, not to mention the
+            dreadful chore of debugging the code. The objective during it's design was to create a programming language
+            that would be: simple to learn, suitable for a wide variety of applications, machine independent, and would
+            allow complex mathematical expressions to be stated similarly to regular algebraic notation. While still
+            being almost as efficient in execution as assembly language. Since FORTRAN was so much easier to code,
+            programmers were able to write programs 500% faster than before, while execution efficiency was only reduced
+            by 20%, this allowed them to focus more on the problem solving aspects of a problem, and less on coding.
+            </br></br>
+
+            FORTRAN was so innovative not only because it was the first high-level language, but also because of it's
+            compiler, which is credited as giving rise to the branch of computer science now known as compiler theory.
+            Several years after it's release FORTRAN had developed many different dialects, (due to special tweaking by
+            programmers trying to make it better suit their personal needs) making it very difficult to transfer
+            programs from one machine to another.
+            </br></br>
+
+            These problems lead the American Standards Association (now known as the American National Standards
+            Association) to release it's first Standard for a Programming Languagein 1966. This first standardized
+            version has come to be known as FORTRAN '66 (aka.. FORTRAN IV).
+            </br></br>
+
+            Despite this standardization, a few years later, various new dialects began to surface again, requiring the
+            Standards Association review the language again. This version is known as FORTRAN '77. This version was
+            released in 1978 (it was called '77 because the Association began it's review in 1977), with several new
+            features. Some of the more notable properties were; new error handling methods, and mechanisms for managing
+            large-scale programs. The latest version; Fortran '90 (released in 1990, using the new capitalization
+            scheme) added even more new features, such as support for: recursion, pointers, and for programmer-defined
+            data types.
+            </br></br>
+
+            {Fortran 90's future - Current research in compiler theory involves equipping compilers to generate object
+            code, that is able to exploit the capabilities of massively parallel computers. Thr Fortran 90 compilers are
+            key targets of such research}
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    <!-- The Footer Text-->
+    <div class="footer-container-homepage">
+        <p>&copy GDG OAU 2013</p>
+    </div>
+</footer>
+</body>
+
+<!-- Javascript Files -->
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/fortran_config.js"></script>
+<script type="text/javascript" src="js/dashboard.js"></script>
+<script type="text/javascript" src="js/fortran_init.js"></script>
+<script src="./js/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("code");
+    editor.setTheme("ace/theme/twilight");
+    editor.getSession().setMode("ace/mode/java");
+    var textarea = document.getElementsByTagName("textarea")[1];
+    textarea.style.display = "none";
+    editor.getSession().setValue(textarea.innerHTML);
+    editor.getSession().on("change", function () {
+        textarea.innerHTML = editor.getSession().getValue();
+    });
+    editor.setFontSize(16);
+    editor.getSession().on("changeAnnotation", function () {
+
+        var annot = editor.getSession().getAnnotations();
+
+        for (var key in annot) {
+            if (annot.hasOwnProperty(key))
+                console.log("[" + annot[key][0].row + " , " + annot[key][0].column + "] - \t" + annot[key][0].text);
+        }
+
+    });
+    editor.renderer.onResize(true);
+    $(document).ready(function () {
+        $("#submit").unbind("click").on("click", function () {
+            var url = "./shell.php";
+            var contents = $("#form").serialize();
+            $("#success").hide();
+            $("#source_link").hide();
+            $("#error").hide();
+            $.post(url, contents, function (data) {
+                if(data.status){
+                    console.log(data.result);
+                    $("#success").html(">> " + data.result).fadeIn();
+                    $("#source_link").attr("href",data.link).fadeIn();
+                }else{
+                    $("#error").html("Error>>\n" + data.error_message).fadeIn();
+                }
+            },"json");
+            return false;
         });
-        editor.setFontSize(13);
-        editor.getSession().on("changeAnnotation", function(){
-
-            var annot = editor.getSession().getAnnotations();
-
-            for (var key in annot){
-                if (annot.hasOwnProperty(key))
-                    console.log("[" + annot[key][0].row + " , " + annot[key][0].column + "] - \t" + annot[key][0].text);
-            }
-
-        });
-        editor.renderer.onResize(true);
-        $(document).ready(function(){
-            $("#submit").unbind("click").on("click",function(){
-                var url = "./shell.php";
-                var contents = $("#form").serialize();
-                $.post(url,contents,function(data){
-                    $("#results").html(data);
-                });
-                return false;
-            });
-        });
-        $("#clear_btn").unbind("clear").on("click",function(){
-            editor.getSession().setValue("");
-            document.getElementById("results").innerHTML = "";
-        });
-    </script>
-
-  </body>
+    });
+    $("#clear_btn").unbind("clear").on("click", function () {
+        editor.getSession().setValue("");
+        $("#success").hide();
+        $("#source_link").hide();
+        $("#error").hide();
+    });
+</script>
 </html>
