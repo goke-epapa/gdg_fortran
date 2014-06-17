@@ -14,7 +14,7 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" media="screen">
 </head>
-<body>
+<body oncontextmenu="return false;">
 <header class="page-header">
     <div class="header-container-homepage">
         <div class="header-left left">
@@ -25,15 +25,17 @@
                 <p>FORTRAN COMPILER</p>
             </div>
         </div>
-
+	
         <div class="tabbable"> <!-- Only required for left/right tabs -->
             <ul class="nav nav-tabs header-right right" id="links">
                 <li class="active"><a href="#home" data-toggle="tab"><i class="icon-home"></i>Home</a></li>
+
                 <li><a href="#contact_us" data-toggle="tab"><i class="icon-envelope"></i>Contact Us</a></li>
                 <li><a href="#about_us" data-toggle="tab"><i class="icon-info-sign"></i>About Us</a></li>
                 <li><a href="#history" data-toggle="tab"><i class="icon-globe"></i>History of FORTRAN</a></li>
             </ul>
         </div>
+<strong><a href="" class='pull-right' style="color:red">Log Out</a></strong>
     </div>
 </header>
 
@@ -52,20 +54,44 @@
         </div>
         <div class="button">
             <div>
-                <form action="shell_old.php" method="post" id="form">
-                    <textarea name="code">
+<!-- 
 PROGRAM GOKE
 IMPLICIT NONE
 WRITE(*,*)"HELLO WORLD"
 STOP
 END PROGRAM GOKE
-                    </textarea>
+ -->
+                <form action="shell_old.php" method="post" id="form">
+<br/>
+<label>Select Lab Number</label>
+
+<select name='lab_no' id='lab_no' >
+<option value=1>Lab 1</option>
+<option value=2>Lab 2</option>
+<option value=3>Lab 3</option>
+<option value=4>Lab 4</option>
+<option value=5>Lab 5</option>
+<option value=6>Lab 6</option>
+<option value=7>Lab 7</option>
+<option value=8>Lab 8</option>
+<option value=9>Lab 9</option>
+<option value=10>Lab 10</option>
+<option value=11>Lab 11</option>
+<option value=12>Lab 12</option>
+<option value=13>Lab 13</option>
+<option value=14>Lab 14</option>
+<option value=15>Lab 15</option>
+</select>                    
+<textarea id='code' name="code"></textarea>
+<!--<input type='hidden' name='lab_no' id='lab_no' /> -->
+<input type='hidden' name='matric' id='matric' />
+<br/>
                     Enter the input to the program separated with commas e.g 1,2,3,4
                     <br/>
                     <input name="stdin" id="stdin" type="text" />
-                    <button  id="submit" class="btn btn-primary btn-success" type="button"><i class="icon-ok-circle"></i>Compile
-                        & Run
-                    </button>
+<br>
+		   <button id="save_btn" class="btn btn-primary" type="button"><i class="icon-ok-circle"></i>Save</button>
+                    <button  id="submit" class="btn btn-primary btn-success" type="button"><i class="icon-ok-circle"></i>Compile & Run</button>
                     <button id="clear_btn" class="btn btn-primary btn-danger" type="button"><i class="icon-remove"></i>Clear</button>
                 </form>
             </div>
@@ -149,6 +175,32 @@ END PROGRAM GOKE
                                                                  title="Linkedin Profile"/></a>
             </div>
             `
+        </div>
+        <div class="about-div">
+            <div class="left">
+                <p>Odumuyiwa Leye</p>
+            </div>
+            <div class="right">
+                <a href="#"><img src="images/Facebook-logo-ICON-02.png"
+                                                                title="Facebook Profile"/></a>
+                <a href="#"><img src="images/google-Plus-icon.png"
+                                                                              title="Google+ Profile"/></a>
+                <a href="#"><img src="images/LinkedIn-Logo-02.png"
+                                                                                     title="Linkedin Profile"/></a>
+            </div>
+        </div>
+        <div class="about-div">
+            <div class="left">
+                <p>Ojediran Tunde</p>
+            </div>
+            <div class="right">
+                <a href="#"><img src="images/Facebook-logo-ICON-02.png"
+                                 title="Facebook Profile"/></a>
+                <a href="#"><img src="images/google-Plus-icon.png"
+                                 title="Google+ Profile"/></a>
+                <a href="#"><img src="images/LinkedIn-Logo-02.png"
+                                 title="Linkedin Profile"/></a>
+            </div>
         </div>
     </div>
 
