@@ -20,7 +20,6 @@ class Utils
         echo($source);
     }
 
-
     public static function getRandomVariableName($length = 10)
     {
         if ($length <= 0 || !is_int($length)) {
@@ -31,7 +30,6 @@ class Utils
         $variableName = $variableName . Utils::random_string($length - 1);
         return $variableName;
     }
-
 
     public static function random_string($length)
     {
@@ -51,7 +49,6 @@ class Utils
         $read_statements = $matches[0];
         return $read_statements;
     }
-
 
     public static function replaceReadStatements($code, $tempMemoryVariable)
     {
@@ -78,14 +75,12 @@ class Utils
         return $call_arg;
     }
 
-
     public static function stripArgs($read_stmt)
     {
         preg_match_all("/(read|READ)[ ]*\([ ]*\*[ ]*,\*[ ]*\)/", $read_stmt, $read_clause);
         $read_stmt = trim(str_replace($read_clause[0][0], "", $read_stmt));
         return Utils::splitCSV($read_stmt);
     }
-
 
     public static function splitCSV($data)
     {
@@ -96,7 +91,6 @@ class Utils
 
     public static function serveSource($filename)
     {
-
         if ($file = fopen("../" . $filename, 'r')) {
             $fsize = filesize("../" . $filename);
             $mime_type = Utils::getMimeType("../" . $filename);
@@ -112,9 +106,7 @@ class Utils
         } else {
             // do some error handling
         }
-
     }
-
 
     /**
      * @param $filepath
